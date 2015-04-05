@@ -1,0 +1,23 @@
+Mangea Liviu Darius 334CA
+
+Am rulat testele locale pe 1, 2, 4 si 8 threaduri si am obtinut
+urmatoarele rezultate. Pentru primul test am obtinut aproximativ
+800ms pentru 1 thread, 450ms pentru 2 threaduri, 260ms pentru 4 threaduri 
+si 160ms pentru 8 threaduri, rezultand o scalabilitate de aproximativ
+1.7. Pentru al doilea test local rezultatele au fost foarte similare.
+
+Ca metoda de implementare am citit harta din fisier dupa care
+am copiat in simulare harta, iar daca aceasta era mai mare decat
+harta de simulat am copiat din ea doar cat erau dimensiunile hartii
+de simulare. Dupa aceea, intr-un for mare care care executa
+numarul de etape din joc, la fiecare etapa mi-am copiat matricea
+simulare intru-una temporara, apoi in matricea simulare am calculat
+pentru fiecare element numarul de vecini folosind matricea tempoara,
+apoi in functie de numarul de vecini si de ce fusese in etapa
+anterioara in acea celula am stabilit daca pun 0 sau 1 in matricea
+de simulare. In final am afisat-o in fisier conform formatului de output.
+
+Am folosit directive OpenMP pentru paralelizare. Am folosit schedule(static)
+pentru for-urile imbricate din cadrul parcurgerilor de matrici pentru ca
+fiecare for interior sa fie parcurs de un singur thread iar impartirea pe
+threaduri sa se faca doar pentru for-ul exterior.
